@@ -15,7 +15,7 @@ GameObject:
   - 114: {fileID: 11436912}
   m_Layer: 0
   m_Name: PaintDropPrefab
-  m_TagString: Untagged
+  m_TagString: Paint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -89,6 +89,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b221328cb3905b4b9177178a94071ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PaintSplash: {fileID: 145038, guid: 481abe8d41a02d4448ce761760be4f19, type: 2}
 --- !u!135 &13515148
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -124,6 +125,14 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: .200000003
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_TagString
+      value: Paint
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: PaintSplash
+      value: 
+      objectReference: {fileID: 145038, guid: 481abe8d41a02d4448ce761760be4f19, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 118992}
