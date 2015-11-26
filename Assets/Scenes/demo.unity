@@ -693,7 +693,7 @@ GameObject:
   - 23: {fileID: 670461144}
   m_Layer: 0
   m_Name: Ceiling
-  m_TagString: Untagged
+  m_TagString: Paintable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1515,7 +1515,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 186914, guid: 4eee624114f0cae4ea8c7069d516d41f, type: 2}
       propertyPath: m_TagString
-      value: Untagged
+      value: Paintable
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4eee624114f0cae4ea8c7069d516d41f, type: 2}
