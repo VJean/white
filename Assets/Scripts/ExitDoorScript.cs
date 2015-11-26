@@ -15,6 +15,7 @@ public class ExitDoorScript : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other){
 		Debug.Log(other.gameObject.name + " entered the exit door");
+		Application.LoadLevel ("menu");
 	}
 
 	void OnTriggerExit(Collider other){
