@@ -28,6 +28,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
         [SerializeField] private AudioClip m_JumpSound;           // the sound played when character leaves the ground.
         [SerializeField] private AudioClip m_LandSound;           // the sound played when character touches back on ground.
 
+		private SixenseInput.Controller m_leftHand;
+		private SixenseInput.Controller m_rightHand;
         private Camera m_Camera;
         private bool m_Jump;
         private float m_YRotation;
@@ -45,6 +47,10 @@ namespace UnityStandardAssets.Characters.FirstPerson
         // Use this for initialization
         private void Start()
         {
+			SixensePlugin.sixenseInit();
+			m_leftHand = SixenseInput.Controllers[0];
+			m_rightHand = SixenseInput.Controllers[1];
+
             m_CharacterController = GetComponent<CharacterController>();
             m_Camera = Camera.main;
             m_OriginalCameraPosition = m_Camera.transform.localPosition;
@@ -65,7 +71,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
             // the jump state needs to read here to make sure it is not missed
             if (!m_Jump)
             {
-                m_Jump = CrossPlatformInputManager.GetButtonDown("Jump");
+                // m_Jump = CrossPlatformInputManager.GetButtonDown("Jump");
+				m_Jump = m_rightHand.GetButtonDown(SixenseButtons.ONE);
             }
 
             if (!m_PreviouslyGrounded && m_CharacterController.isGrounded)
