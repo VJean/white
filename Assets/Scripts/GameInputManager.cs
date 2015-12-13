@@ -52,14 +52,21 @@ public class GameInputManager : Singleton<GameInputManager> {
 			return m_rightHand.GetButton(SixenseButtons.BUMPER);
 	}
 
-	public object GetButtonUpThrowPaint ()
-	{
+	public bool GetButtonUpThrowPaint() {
 		if (m_inputDevice == GameInputDevice.KEYBOARD)
 			return Input.GetMouseButtonUp(0);
 		else
 			return m_rightHand.GetButtonUp(SixenseButtons.BUMPER);
 	}
-	
+
+	public Vector3 GetPointerPosition() {
+		if (m_inputDevice == GameInputDevice.KEYBOARD)
+			return Input.mousePosition;
+		else
+			// Should we take care of the rotation ?
+			return m_rightHand.Position;
+	}
+
 	public float GetAxisMoveX() {
 		if (m_inputDevice == GameInputDevice.KEYBOARD)
 			return CrossPlatformInputManager.GetAxis("Horizontal");
@@ -90,16 +97,16 @@ public class GameInputManager : Singleton<GameInputManager> {
 
 	private void HandleDeviceChange(){
 		if (m_inputDevice == GameInputDevice.RAZER){
-			if(m_leftHand.Docked || m_rightHand.Docked)
+			if(!SixenseInput.IsBaseConnected(0) || m_leftHand.Docked || m_rightHand.Docked){
 				m_inputDevice = GameInputDevice.KEYBOARD;
-			
-			Debug.Log("Controllers docked/unabled, now using input : " + m_inputDevice.ToString());
+				Debug.Log("Using input : " + m_inputDevice.ToString());
+			}
 		}
 		else if (m_inputDevice == GameInputDevice.KEYBOARD){
-			if(!m_leftHand.Docked && !m_rightHand.Docked)
+			if(SixenseInput.IsBaseConnected(0) && !m_leftHand.Docked && !m_rightHand.Docked){
 				m_inputDevice = GameInputDevice.RAZER;
-			
-			Debug.Log("Controllers enabled/undocked, now using input : " + m_inputDevice.ToString());
+				Debug.Log("Using input : " + m_inputDevice.ToString());
+			}
 		}
 	}
 }
