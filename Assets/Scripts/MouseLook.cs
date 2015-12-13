@@ -29,8 +29,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
         public void LookRotation(Transform character, Transform camera)
         {
-            float yRot = GameInputManager.Instance.GetAxisLookY() * XSensitivity;
-            float xRot = GameInputManager.Instance.GetAxisLookX() * YSensitivity;
+            float yRot = GameInputManager.Instance.GetAxisLookX() * XSensitivity;
+            float xRot = GameInputManager.Instance.GetAxisLookY() * YSensitivity;
 
             m_CharacterTargetRot *= Quaternion.Euler (0f, yRot, 0f);
             m_CameraTargetRot *= Quaternion.Euler (-xRot, 0f, 0f);

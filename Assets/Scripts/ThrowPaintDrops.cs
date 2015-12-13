@@ -15,7 +15,7 @@ public class ThrowPaintDrops : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		Ray ray = GetComponentInChildren<Camera>().ScreenPointToRay(Input.mousePosition);
+		Ray ray = GetComponentInChildren<Camera>().ScreenPointToRay(GameInputManager.Instance.GetPointerPosition());
 		Debug.DrawRay(ray.origin, ray.direction * RAYCASTLENGTH, Color.green);
 		
 		if (GameInputManager.Instance.GetButtonThrowPaint())

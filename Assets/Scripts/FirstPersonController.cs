@@ -209,7 +209,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
 		{
 			// Read input
 			float horizontal = GameInputManager.Instance.GetAxisMoveX();
-			float vertical = GameInputManager.Instance.GetAxisMoveX();
+			float vertical = GameInputManager.Instance.GetAxisMoveY();
 			
 			bool waswalking = m_IsWalking;
 
