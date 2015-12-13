@@ -18,7 +18,7 @@ public class ThrowPaintDrops : MonoBehaviour {
 		Ray ray = GetComponentInChildren<Camera>().ScreenPointToRay(Input.mousePosition);
 		Debug.DrawRay(ray.origin, ray.direction * RAYCASTLENGTH, Color.green);
 		
-		if (Input.GetMouseButton(0))
+		if (GameInputManager.Instance.GetButtonThrowPaint())
 		{
 			++generationCounter;
 
@@ -29,7 +29,7 @@ public class ThrowPaintDrops : MonoBehaviour {
 				drop.gameObject.GetComponent<Rigidbody>().AddForce(ray.direction * 250);
 			}
 		}
-		else if (Input.GetMouseButtonUp(0))
+		else if (GameInputManager.Instance.GetButtonUpThrowPaint())
 		{
 			ResetCounter();
 		}
