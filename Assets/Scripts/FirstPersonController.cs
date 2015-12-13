@@ -28,8 +28,6 @@ namespace UnityStandardAssets.Characters.FirstPerson
         [SerializeField] private AudioClip m_JumpSound;           // the sound played when character leaves the ground.
         [SerializeField] private AudioClip m_LandSound;           // the sound played when character touches back on ground.
 
-		private SixenseInput.Controller m_leftHand;
-		private SixenseInput.Controller m_rightHand;
         private Camera m_Camera;
         private bool m_Jump;
         private float m_YRotation;
@@ -44,13 +42,11 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private bool m_Jumping;
         private AudioSource m_AudioSource;
 
+		private GameInputManager gameInputManager;
+
         // Use this for initialization
         private void Start()
         {
-			SixensePlugin.sixenseInit();
-			m_leftHand = SixenseInput.Controllers[0];
-			m_rightHand = SixenseInput.Controllers[1];
-
             m_CharacterController = GetComponent<CharacterController>();
             m_Camera = Camera.main;
             m_OriginalCameraPosition = m_Camera.transform.localPosition;
@@ -67,12 +63,12 @@ namespace UnityStandardAssets.Characters.FirstPerson
         // Update is called once per frame
         private void Update()
         {
-            RotateView();
-            // the jump state needs to read here to make sure it is not missed
+			RotateView();
+            
+			// the jump state needs to read here to make sure it is not missed
             if (!m_Jump)
             {
-                // m_Jump = CrossPlatformInputManager.GetButtonDown("Jump");
-				m_Jump = m_rightHand.GetButtonDown(SixenseButtons.ONE);
+				m_Jump = GameInputManager.Instance.GetButtonDownJump();
             }
 
             if (!m_PreviouslyGrounded && m_CharacterController.isGrounded)
@@ -102,8 +98,12 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private void FixedUpdate()
         {
             float speed;
-            GetInput(out speed);
-            // always move along the camera forward as it is the direction that it being aimed at
+            
+			GetInput();
+            
+			speed = m_IsWalking ? m_WalkSpeed : m_RunSpeed;
+
+			// always move along the camera forward as it is the direction that it being aimed at
             Vector3 desiredMove = transform.forward*m_Input.y + transform.right*m_Input.x;
 
             // get a normal for the surface that is being touched to move along it
@@ -205,39 +205,30 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_Camera.transform.localPosition = newCameraPosition;
         }
 
+		private void GetInput()
+		{
+			// Read input
+			float horizontal = GameInputManager.Instance.GetAxisMoveX();
+			float vertical = GameInputManager.Instance.GetAxisMoveY();
+			
+			bool waswalking = m_IsWalking;
 
-        private void GetInput(out float speed)
-        {
-            // Read input
-            float horizontal = CrossPlatformInputManager.GetAxis("Horizontal");
-            float vertical = CrossPlatformInputManager.GetAxis("Vertical");
-
-            bool waswalking = m_IsWalking;
-
-#if !MOBILE_INPUT
-            // On standalone builds, walk/run speed is modified by a key press.
-            // keep track of whether or not the character is walking or running
-            m_IsWalking = !Input.GetKey(KeyCode.LeftShift);
-#endif
-            // set the desired speed to be walking or running
-            speed = m_IsWalking ? m_WalkSpeed : m_RunSpeed;
-            m_Input = new Vector2(horizontal, vertical);
-
-            // normalize input if it exceeds 1 in combined length:
-            if (m_Input.sqrMagnitude > 1)
-            {
-                m_Input.Normalize();
-            }
-
-            // handle speed change to give an fov kick
-            // only if the player is going to a run, is running and the fovkick is to be used
-            if (m_IsWalking != waswalking && m_UseFovKick && m_CharacterController.velocity.sqrMagnitude > 0)
-            {
-                StopAllCoroutines();
-                StartCoroutine(!m_IsWalking ? m_FovKick.FOVKickUp() : m_FovKick.FOVKickDown());
-            }
-        }
-
+			m_Input = new Vector2(horizontal, vertical);
+			
+			// normalize input if it exceeds 1 in combined length:
+			if (m_Input.sqrMagnitude > 1)
+			{
+				m_Input.Normalize();
+			}
+			
+			// handle speed change to give an fov kick
+			// only if the player is going to a run, is running and the fovkick is to be used
+			if (m_IsWalking != waswalking && m_UseFovKick && m_CharacterController.velocity.sqrMagnitude > 0)
+			{
+				StopAllCoroutines();
+				StartCoroutine(!m_IsWalking ? m_FovKick.FOVKickUp() : m_FovKick.FOVKickDown());
+			}
+		}
 
         private void RotateView()
         {
