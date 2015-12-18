@@ -4,7 +4,7 @@
 
 
 - Intégrer Oculus Rift
-- Changer la couleur de la peinture suivant l'inclinaison de la surface
+- Petit bug : il y a des petits traits sur la peinture que l'on lance sur les murs (peut-être dû à l'image utilisée : cela ne doit pas être un cercle complet)
 - Améliorer vers particules ?
 - Source sonore sur la sortie
 
