@@ -89,7 +89,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b221328cb3905b4b9177178a94071ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PaintSplash: {fileID: 145038, guid: 481abe8d41a02d4448ce761760be4f19, type: 2}
+  BlackSplash: {fileID: 145038, guid: 481abe8d41a02d4448ce761760be4f19, type: 2}
+  darkGraySplash: {fileID: 125040, guid: 338ac367b5ce2b743babeb749b2059a7, type: 2}
+  lightGraySplash: {fileID: 148272, guid: a753389af6effbd47a7ededd492f6d14, type: 2}
+  ComparisonObject: {fileID: 132154, guid: 59ce7d738cc64cd41b4427543c01823c, type: 2}
 --- !u!135 &13515148
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -133,6 +136,22 @@ Prefab:
       propertyPath: PaintSplash
       value: 
       objectReference: {fileID: 145038, guid: 481abe8d41a02d4448ce761760be4f19, type: 2}
+    - target: {fileID: 0}
+      propertyPath: BlackSplash
+      value: 
+      objectReference: {fileID: 145038, guid: 481abe8d41a02d4448ce761760be4f19, type: 2}
+    - target: {fileID: 0}
+      propertyPath: darkGraySplash
+      value: 
+      objectReference: {fileID: 125040, guid: 338ac367b5ce2b743babeb749b2059a7, type: 2}
+    - target: {fileID: 0}
+      propertyPath: lightGraySplash
+      value: 
+      objectReference: {fileID: 148272, guid: a753389af6effbd47a7ededd492f6d14, type: 2}
+    - target: {fileID: 0}
+      propertyPath: ComparisonObject
+      value: 
+      objectReference: {fileID: 132154, guid: 59ce7d738cc64cd41b4427543c01823c, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 118992}

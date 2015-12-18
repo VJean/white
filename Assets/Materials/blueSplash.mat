@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: splash
+  m_Name: blueSplash
   m_Shader: {fileID: 30, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
@@ -19,7 +19,7 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 2800000, guid: b359eadd7e5c19f41997b0725ba8c343, type: 3}
+          m_Texture: {fileID: 2800000, guid: e871bf691f838cc438dcd5c2e5226bb4, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -135,4 +135,4 @@ Material:
       data:
         first:
           name: _Color
-        second: {r: .316176474, g: .316176474, b: .316176474, a: 1}
+        second: {r: .227941155, g: .227941155, b: .227941155, a: 1}
