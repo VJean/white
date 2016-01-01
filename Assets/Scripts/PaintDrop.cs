@@ -2,7 +2,10 @@
 using System.Collections;
 
 public class PaintDrop : MonoBehaviour {
-	public GameObject PaintSplash;
+	public GameObject BlackSplash, 
+		darkGraySplash, 
+		lightGraySplash,
+		ComparisonObject;
 
 	public const float RAYCASTLENGTH = 0.5f;
 
@@ -25,11 +28,28 @@ public class PaintDrop : MonoBehaviour {
 			RaycastHit hitInfo;
 			bool rayCasted = Physics.Raycast (ray, out hitInfo, RAYCASTLENGTH);
 			if(rayCasted && hitInfo.transform.CompareTag("Paintable")){
-				Instantiate(PaintSplash, hitInfo.point, Quaternion.FromToRotation(Vector3.up,hitInfo.normal));
+				InstantianteSpash(Quaternion.FromToRotation(Vector3.up,hitInfo.normal), hitInfo.point);
+				//Instantiate(lightGraySplash, hitInfo.point, Quaternion.FromToRotation(Vector3.up,hitInfo.normal));
 				Destroy(this.gameObject);
 				break;
 			}
 		}
 
+	}
+
+	void InstantianteSpash(Quaternion rotation, Vector3 point){
+		Debug.Log (Quaternion.Angle(rotation, ComparisonObject.transform.rotation));
+		float angle = Quaternion.Angle (rotation, ComparisonObject.transform.rotation);
+		GameObject Splash;
+		if(angle >= 0 && angle <= 3){
+			Splash = BlackSplash;
+		}
+		else if(angle > 3 && angle <= 50){
+			Splash = lightGraySplash;
+		}
+		else {
+			Splash = darkGraySplash;
+		}
+		Instantiate(Splash, point, rotation);
 	}
 }
