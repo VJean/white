@@ -62,9 +62,10 @@ public class GameInputManager : Singleton<GameInputManager> {
 	public Vector3 GetPointerPosition() {
 		if (m_inputDevice == GameInputDevice.KEYBOARD)
 			return Input.mousePosition;
-		else
-			// Should we take care of the rotation ?
-			return m_rightHand.Position;
+		else{
+			//return m_rightHand.Rotation * m_rightHand.Position;
+			return Quaternion.Inverse(m_rightHand.Rotation) * m_rightHand.Position;
+		}
 	}
 
 	public float GetAxisMoveX() {

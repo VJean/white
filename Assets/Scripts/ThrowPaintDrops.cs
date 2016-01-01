@@ -4,7 +4,7 @@ using System.Collections;
 public class ThrowPaintDrops : MonoBehaviour {
 	public Transform paintDropPrefab;
 
-	private const int RAYCASTLENGTH = 10;
+	private const int RAYCASTLENGTH = 100;
 	private const int generationRateLimit = 10;
 	private int generationCounter;
 
@@ -16,8 +16,13 @@ public class ThrowPaintDrops : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		Ray ray = GetComponentInChildren<Camera>().ScreenPointToRay(GameInputManager.Instance.GetPointerPosition());
+		//Debug.Log ("ray direction " + ray.direction);
 		Debug.DrawRay(ray.origin, ray.direction * RAYCASTLENGTH, Color.green);
-		
+
+		LineRenderer linerenderer = new LineRenderer();
+
+
+
 		if (GameInputManager.Instance.GetButtonThrowPaint())
 		{
 			++generationCounter;
