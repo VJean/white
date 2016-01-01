@@ -44,6 +44,13 @@ public class GameInputManager : Singleton<GameInputManager> {
 		else
 			return m_rightHand.GetButtonDown(SixenseButtons.ONE);
 	}
+
+	public bool GetButtonDownUse() {
+		if (m_inputDevice == GameInputDevice.KEYBOARD)
+			return Input.GetKeyDown(KeyCode.E);
+		else
+			return m_leftHand.GetButtonDown(SixenseButtons.BUMPER);
+	}
 	
 	public bool GetButtonThrowPaint() {
 		if (m_inputDevice == GameInputDevice.KEYBOARD)
