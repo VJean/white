@@ -58,6 +58,10 @@ Material:
         second: 1
       data:
         first:
+          name: _Metallic
+        second: 0
+      data:
+        first:
           name: _EmissionScaleUI
         second: 0
       data:
@@ -87,10 +91,6 @@ Material:
       data:
         first:
           name: _FluidSpecularScaleUI
-        second: 0
-      data:
-        first:
-          name: _Metallic
         second: 0
     m_Colors:
       data:
