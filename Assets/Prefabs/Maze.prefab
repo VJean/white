@@ -18292,7 +18292,7 @@ GameObject:
   - 4: {fileID: 497502}
   - 114: {fileID: 11407884}
   m_Layer: 0
-  m_Name: MazeGenerator
+  m_Name: Maze
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
