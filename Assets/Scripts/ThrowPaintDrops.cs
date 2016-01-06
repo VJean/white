@@ -19,10 +19,6 @@ public class ThrowPaintDrops : MonoBehaviour {
 		//Debug.Log ("ray direction " + ray.direction);
 		Debug.DrawRay(ray.origin, ray.direction * RAYCASTLENGTH, Color.green);
 
-		LineRenderer linerenderer = new LineRenderer();
-
-
-
 		if (GameInputManager.Instance.GetButtonThrowPaint())
 		{
 			++generationCounter;
