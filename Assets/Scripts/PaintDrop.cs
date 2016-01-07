@@ -27,9 +27,11 @@ public class PaintDrop : MonoBehaviour {
 		foreach(Ray ray in rays){
 			RaycastHit hitInfo;
 			bool rayCasted = Physics.Raycast (ray, out hitInfo, RAYCASTLENGTH);
-			if(rayCasted && hitInfo.transform.CompareTag("Paintable")){
-				InstantianteSpash(Quaternion.FromToRotation(Vector3.up,hitInfo.normal), hitInfo.point);
-				//Instantiate(lightGraySplash, hitInfo.point, Quaternion.FromToRotation(Vector3.up,hitInfo.normal));
+			if(rayCasted){
+				if (hitInfo.transform.CompareTag("Paintable")){
+					InstantianteSplash(Quaternion.FromToRotation(Vector3.up,hitInfo.normal), hitInfo.point);
+					//Instantiate(lightGraySplash, hitInfo.point, Quaternion.FromToRotation(Vector3.up,hitInfo.normal));
+				}
 				Destroy(this.gameObject);
 				break;
 			}
@@ -37,8 +39,7 @@ public class PaintDrop : MonoBehaviour {
 
 	}
 
-	void InstantianteSpash(Quaternion rotation, Vector3 point){
-		Debug.Log (Quaternion.Angle(rotation, ComparisonObject.transform.rotation));
+	void InstantianteSplash(Quaternion rotation, Vector3 point){
 		float angle = Quaternion.Angle (rotation, ComparisonObject.transform.rotation);
 		GameObject Splash;
 		if(angle >= 0 && angle <= 3){

@@ -4,13 +4,19 @@ using System.Collections;
 public class ThrowPaintDrops : MonoBehaviour {
 	public Transform paintDropPrefab;
 
+
 	private const int RAYCASTLENGTH = 100;
-	private const int generationRateLimit = 10;
+	// Max Ammunition
+	private const int MAX_AMMO = 250;
+	private int currentAmmo;
+	// the higher it is, the slower the drops are instantiated
+	private const int GENERATION_LIMIT = 1;
 	private int generationCounter;
 
 	// Use this for initialization
 	void Start () {
 		ResetCounter();
+		ResetAmmo();
 	}
 	
 	// Update is called once per frame
@@ -23,11 +29,21 @@ public class ThrowPaintDrops : MonoBehaviour {
 		{
 			++generationCounter;
 
-			if (generationCounter > generationRateLimit)
+			if (generationCounter > GENERATION_LIMIT)
 			{
 				generationCounter = 0;
-				Transform drop = Instantiate(paintDropPrefab, ray.origin + ray.direction, Quaternion.identity) as Transform;
-				drop.gameObject.GetComponent<Rigidbody>().AddForce(ray.direction * 250);
+
+				if (currentAmmo > 0){
+					Transform drop = Instantiate(paintDropPrefab, ray.origin + ray.direction, Quaternion.identity) as Transform;
+					drop.gameObject.GetComponent<Rigidbody>().AddForce(ray.direction * 250);
+
+					--currentAmmo;
+					Debug.Log ("Ammo : " + currentAmmo.ToString());
+				}
+				else {
+					Debug.Log("No ammo");
+				}
+
 			}
 		}
 		else if (GameInputManager.Instance.GetButtonUpThrowPaint())
@@ -37,7 +53,21 @@ public class ThrowPaintDrops : MonoBehaviour {
 
 	}
 
+	void OnTriggerEnter(Collider col){
+		Debug.Log("Trigger : "+col.tag);
+		if(col.CompareTag("Checkpoint")){
+			Debug.Log("Entering Checkpoint");
+			ResetAmmo();
+		}
+
+	}
+
 	void ResetCounter() {
-		generationCounter = generationRateLimit;
+		generationCounter = GENERATION_LIMIT;
+	}
+
+	void ResetAmmo ()
+	{
+		currentAmmo = MAX_AMMO;
 	}
 }
