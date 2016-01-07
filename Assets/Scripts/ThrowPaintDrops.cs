@@ -10,7 +10,7 @@ public class ThrowPaintDrops : MonoBehaviour {
 	private const int MAX_AMMO = 250;
 	private int currentAmmo;
 	// the higher it is, the slower the drops are instantiated
-	private const int GENERATION_LIMIT = 1;
+	private const int GENERATION_LIMIT = 3;
 	private int generationCounter;
 
 	// Use this for initialization
