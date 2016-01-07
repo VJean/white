@@ -131,7 +131,7 @@ public class MazeGenerator : MonoBehaviour
         foreach(Cell cell in cells)
         {
 
-            visualCellInst = Instantiate(visualCellPrefab, new Vector3(cell.xPos * 3, 0, _height * 3f - cell.zPos * 3), Quaternion.identity) as VisualCell;
+            visualCellInst = Instantiate(visualCellPrefab, new Vector3(cell.xPos * 8, 0, _height * 8f - cell.zPos * 8), Quaternion.identity) as VisualCell;
             visualCellInst.transform.parent = transform;
             visualCellInst._North.gameObject.SetActive(!cell._North);
             visualCellInst._South.gameObject.SetActive(!cell._South);
