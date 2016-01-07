@@ -26,7 +26,7 @@ public class ThrowPaintDrops : MonoBehaviour {
 			if (generationCounter > generationRateLimit)
 			{
 				generationCounter = 0;
-				Transform drop = Instantiate(paintDropPrefab, ray.origin + ray.direction * 3, Quaternion.identity) as Transform;
+				Transform drop = Instantiate(paintDropPrefab, ray.origin + ray.direction, Quaternion.identity) as Transform;
 				drop.gameObject.GetComponent<Rigidbody>().AddForce(ray.direction * 250);
 			}
 		}
