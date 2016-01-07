@@ -114,8 +114,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf820ef43688a204e84b3fa8c7101aaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _width: 15
-  _height: 15
+  _width: 10
+  _height: 10
   visualCellPrefab: {fileID: 11411472, guid: 87b90a7022074ba46bfb8c34b861f6a7, type: 2}
 --- !u!4 &353958230
 Transform:

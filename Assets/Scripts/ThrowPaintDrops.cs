@@ -7,7 +7,7 @@ public class ThrowPaintDrops : MonoBehaviour {
 
 	private const int RAYCASTLENGTH = 100;
 	// Max Ammunition
-	private const int MAX_AMMO = 250;
+	private const int MAX_AMMO = 200;
 	private int currentAmmo;
 	// the higher it is, the slower the drops are instantiated
 	private const int GENERATION_LIMIT = 3;
